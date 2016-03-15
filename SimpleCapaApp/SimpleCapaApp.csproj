@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201603151730096_migration1.Designer.cs">
       <DependentUpon>201603151730096_migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603151917050_newMigration.cs" />
+    <Compile Include="Migrations\201603151917050_newMigration.Designer.cs">
+      <DependentUpon>201603151917050_newMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\CapaContext.cs" />
@@ -239,6 +243,7 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Administrators\AdministratorUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603151730096_migration1.resx">
       <DependentUpon>201603151730096_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603151917050_newMigration.resx">
+      <DependentUpon>201603151917050_newMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
