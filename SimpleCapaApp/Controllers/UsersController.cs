@@ -17,7 +17,8 @@ namespace SimpleCapaApp.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var users = db.Users.Include(u => u.Administrator);
+            return View(users.ToList());
         }
 
         // GET: Users/Details/5
@@ -38,6 +39,7 @@ namespace SimpleCapaApp.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            ViewBag.AdministratorId = new SelectList(db.Administrators, "Id", "FirstName");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Email")] User user)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,AdministratorId")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace SimpleCapaApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AdministratorId = new SelectList(db.Administrators, "Id", "FirstName", user.AdministratorId);
             return View(user);
         }
 
@@ -70,6 +73,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AdministratorId = new SelectList(db.Administrators, "Id", "FirstName", user.AdministratorId);
             return View(user);
         }
 
@@ -78,7 +82,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email")] User user)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,AdministratorId")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace SimpleCapaApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AdministratorId = new SelectList(db.Administrators, "Id", "FirstName", user.AdministratorId);
             return View(user);
         }
 

@@ -13,18 +13,28 @@ namespace SimpleCapaApp.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
+
+        [Required]
         [StringLength(100)]
         public string Description { get; set; }
 
         public int UserId { get; set; }
 
-
-        [Required]
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public Status Status { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime CreationDate { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DueDate {get; set;}
 
     }
 

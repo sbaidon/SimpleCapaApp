@@ -13,11 +13,13 @@ namespace SimpleCapaApp.Models
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         [EmailAddress]
         public string Email { get; set; }
 
-        public virtual ICollection<Task> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

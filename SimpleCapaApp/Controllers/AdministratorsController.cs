@@ -17,7 +17,7 @@ namespace SimpleCapaApp.Controllers
         // GET: Administrators
         public ActionResult Index()
         {
-            return View(db.People.ToList());
+            return View(db.Administrators.ToList());
         }
 
         // GET: Administrators/Details/5
@@ -27,7 +27,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.People.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Email")] Administrator administrator)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(administrator);
+                db.Administrators.Add(administrator);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.People.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email")] Administrator administrator)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.People.Find(id);
+            Administrator administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace SimpleCapaApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Administrator administrator = db.People.Find(id);
-            db.People.Remove(administrator);
+            Administrator administrator = db.Administrators.Find(id);
+            db.Administrators.Remove(administrator);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
