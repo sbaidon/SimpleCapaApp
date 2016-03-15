@@ -39,7 +39,7 @@ namespace SimpleCapaApp.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Description,UserId,Status")] Task task)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,UserId,Status,CreationDate,DueDate")] Task task)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace SimpleCapaApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", task.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
 
@@ -73,7 +73,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", task.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
 
@@ -82,7 +82,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Description,UserId,Status")] Task task)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,UserId,Status,CreationDate,DueDate")] Task task)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace SimpleCapaApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Name", task.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
 

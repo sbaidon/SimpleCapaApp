@@ -8,9 +8,10 @@ namespace SimpleCapaApp.Models
 {
     public class CapaContext : DbContext
     {
-        public DbSet<Administrator> People { get; set; }
 
-        public System.Data.Entity.DbSet<Task> Tasks { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
+
+        public DbSet<Task> Tasks { get; set; }
 
         public DbSet<User> Users { get; set; }
     }
