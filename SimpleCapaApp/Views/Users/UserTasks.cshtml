@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SimpleCapaApp.Models.Task>
+
+<h1>My Tasks</h1>
+<table class="table">
+    <tr>
+
+        <th>
+            Name
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Creation Date
+        </th>
+        <th>
+           Due Date
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

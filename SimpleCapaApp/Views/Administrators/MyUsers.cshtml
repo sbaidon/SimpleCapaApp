@@ -30,9 +30,11 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
+            @Html.ActionLink("Add new task", "Create", "Tasks", new { id = item.Id }, null) |
             @Html.ActionLink("Edit User", "Edit", "Users", new { id=item.Id }, null) |
             @Html.ActionLink("Details", "Details", "Users",new { id=item.Id }, null) |
-            @Html.ActionLink("Delete User", "Delete", "Users",new { id=item.Id }, null)
+            @Html.ActionLink("Delete User", "Delete", "Users", new { id = item.Id }, null)|
+
         </td>
     </tr>
 }

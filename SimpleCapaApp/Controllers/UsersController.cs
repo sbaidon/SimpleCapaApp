@@ -21,6 +21,11 @@ namespace SimpleCapaApp.Controllers
             return View(users.ToList());
         }
 
+        public ActionResult UserTasks(int id)
+        {
+            return View(db.Tasks.Where(t => t.UserId == id).ToList());
+        }
+
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
