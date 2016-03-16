@@ -20,12 +20,6 @@ namespace SimpleCapaApp.Controllers
             return View(db.Administrators.ToList());
         }
 
-        public ActionResult AdministratorUsers(int id)
-        {
-
-            return View(db.Users.Where(u=> u.AdministratorId == id).ToList());
-        }
-
         // GET: Administrators/Details/5
         public ActionResult Details(int? id)
         {
@@ -41,28 +35,28 @@ namespace SimpleCapaApp.Controllers
             return View(administrator);
         }
 
-        //// GET: Administrators/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Administrators/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Administrators/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Administrators.Add(administrator);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Administrators/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Administrators.Add(administrator);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    return View(administrator);
-        //}
+            return View(administrator);
+        }
 
         // GET: Administrators/Edit/5
         public ActionResult Edit(int? id)
