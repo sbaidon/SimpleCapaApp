@@ -21,6 +21,7 @@ namespace SimpleCapaApp.Controllers
             return View(users.ToList());
         }
 
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,9 +38,9 @@ namespace SimpleCapaApp.Controllers
         }
 
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.AdministratorId = new SelectList(db.Administrators, "Id", "FirstName");
+            ViewBag.AdministratorId = id;
             return View();
         }
 

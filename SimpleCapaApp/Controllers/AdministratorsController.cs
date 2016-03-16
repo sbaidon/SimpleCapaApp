@@ -20,6 +20,12 @@ namespace SimpleCapaApp.Controllers
             return View(db.Administrators.ToList());
         }
 
+        public ActionResult MyUsers(int id)
+        {
+            return View(db.Users.Where(u => u.AdministratorId == id).ToList());
+        }
+
+
         // GET: Administrators/Details/5
         public ActionResult Details(int? id)
         {
