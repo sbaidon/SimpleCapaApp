@@ -241,6 +241,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Administrators\MyUsers.cshtml" />
     <Content Include="Views\Users\UserTasks.cshtml" />
+    <Content Include="Views\Tasks\OverdueTasks.cshtml" />
+    <Content Include="Views\Tasks\Completed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

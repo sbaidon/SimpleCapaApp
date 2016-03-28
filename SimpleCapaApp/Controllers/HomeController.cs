@@ -15,14 +15,14 @@ namespace SimpleCapaApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "This is a test application that uses CAPA";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Team #1";
 
             return View();
         }
