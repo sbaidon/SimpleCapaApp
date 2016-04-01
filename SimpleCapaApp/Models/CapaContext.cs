@@ -14,6 +14,10 @@ namespace SimpleCapaApp.Models
         public DbSet<Task> Tasks { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<File> Files { get; set; }
+
+        public DbSet<Capa> Capas { get; set; }
     }
 }
 

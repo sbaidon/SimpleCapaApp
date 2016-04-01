@@ -167,6 +167,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdministratorsController.cs" />
+    <Compile Include="Controllers\CapasController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -177,9 +179,19 @@
     <Compile Include="Migrations\201603151730096_migration1.Designer.cs">
       <DependentUpon>201603151730096_migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604011810202_Capa.cs" />
+    <Compile Include="Migrations\201604011810202_Capa.Designer.cs">
+      <DependentUpon>201604011810202_Capa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604011825485_Tasks.cs" />
+    <Compile Include="Migrations\201604011825485_Tasks.Designer.cs">
+      <DependentUpon>201604011825485_Tasks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\Capa.cs" />
     <Compile Include="Models\CapaContext.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,9 +255,19 @@
     <Content Include="Views\Users\UserTasks.cshtml" />
     <Content Include="Views\Tasks\OverdueTasks.cshtml" />
     <Content Include="Views\Tasks\Completed.cshtml" />
+    <Content Include="Views\Capas\Create.cshtml" />
+    <Content Include="Views\Capas\Delete.cshtml" />
+    <Content Include="Views\Capas\Details.cshtml" />
+    <Content Include="Views\Capas\Edit.cshtml" />
+    <Content Include="Views\Capas\Index.cshtml" />
+    <Content Include="Views\Tasks\PlanTasks.cshtml" />
+    <Content Include="Views\Tasks\PreventTasks.cshtml" />
+    <Content Include="Views\Tasks\CheckTasks.cshtml" />
+    <Content Include="Views\Tasks\CorrectTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -258,6 +280,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603151730096_migration1.resx">
       <DependentUpon>201603151730096_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604011810202_Capa.resx">
+      <DependentUpon>201604011810202_Capa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604011825485_Tasks.resx">
+      <DependentUpon>201604011825485_Tasks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

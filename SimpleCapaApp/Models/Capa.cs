@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SimpleCapaApp.Models
 {
-    public class Task
+    public class Capa
     {
         [Key]
         public int Id { get; set; }
@@ -16,25 +16,15 @@ namespace SimpleCapaApp.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [MaxLength(250)]
         public string Description { get; set; }
 
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual User MasterUser { get; set; }
 
-        public int CapaId { get; set; }
-
-        [ForeignKey("CapaId")]
-        public virtual Capa Capa { get; set; }
-
-        [Required]
-        public Status Status { get; set; }
-
-        [Required]
-        public Step Step { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -42,22 +32,8 @@ namespace SimpleCapaApp.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DueDate {get; set;}
+        public DateTime DueDate { get; set; }
 
     }
 
-    public enum Status
-    {
-        New,
-        Started,
-        Completed
-    }
-
-    public enum Step
-    {
-        Plan,
-        Prevent,
-        Check,
-        Correct
-    }
 }

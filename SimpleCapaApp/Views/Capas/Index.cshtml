@@ -1,15 +1,18 @@
-﻿@model IEnumerable<SimpleCapaApp.Models.Task>
+﻿@model IEnumerable<SimpleCapaApp.Models.Capa>
 
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Capas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            Capa
-        </th>
-        <th>
-            Step
-        </th>
-        <th>
-            Appointed to
+            Master User
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -18,26 +21,18 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
-            Creation Date
+            @Html.DisplayNameFor(model => model.DueDate)
         </th>
-        <th>
-            Due Date
-        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Capa.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Step)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
+            @Html.DisplayFor(modelItem => item.MasterUser.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -46,15 +41,16 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DueDate)
         </td>
-
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
     </tr>
 }
 

@@ -17,8 +17,45 @@ namespace SimpleCapaApp.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            var tasks = db.Tasks.Include(t => t.User);
+            var tasks = db.Tasks.Include(t => t.Capa).Include(t => t.User);
             return View(tasks.ToList());
+        }
+
+        public ActionResult PlanTasks(int id)
+        {
+
+            return View(db.Tasks.Where(c => c.CapaId == id && c.Step == Step.Plan).ToList());
+        }
+
+        public ActionResult PreventTasks(int id)
+        {
+
+            return View(db.Tasks.Where(c => c.CapaId == id && c.Step == Step.Prevent).ToList());
+        }
+
+        public ActionResult CheckTasks(int id)
+        {
+
+            return View(db.Tasks.Where(c => c.CapaId == id && c.Step == Step.Check).ToList());
+        }
+
+        public ActionResult CorrectTasks(int id)
+        {
+
+            return View(db.Tasks.Where(c => c.CapaId == id && c.Step == Step.Correct).ToList());
+        }
+
+
+
+
+        public ActionResult OverDueTasks()
+        {
+            return View(db.Tasks.Where(t => t.DueDate <= DateTime.Now && t.Status != Status.Completed).ToList());
+        }
+
+        public ActionResult Completed()
+        {
+            return View(db.Tasks.Where(t => t.Status == Status.Completed));
         }
 
         // GET: Tasks/Details/5
@@ -37,27 +74,19 @@ namespace SimpleCapaApp.Controllers
         }
 
         // GET: Tasks/Create
-        public ActionResult Create(int id)
+        public ActionResult Create()
         {
-            ViewBag.UserId = id;
+            ViewBag.CapaId = new SelectList(db.Capas, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        public ActionResult OverdueTasks ()
-        {
-            return View(db.Tasks.Where(t => t.DueDate <= DateTime.Now && t.Status != Status.Completed).ToList());
-        }
-
-        public ActionResult Completed()
-        {
-            return View(db.Tasks.Where(t => t.Status == Status.Completed));
-        }
         // POST: Tasks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,UserId,Status,CreationDate,DueDate")] Task task)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,UserId,CapaId,Status,Step,CreationDate,DueDate")] Task task)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +95,7 @@ namespace SimpleCapaApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CapaId = new SelectList(db.Capas, "Id", "Name", task.CapaId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
@@ -82,6 +112,7 @@ namespace SimpleCapaApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CapaId = new SelectList(db.Capas, "Id", "Name", task.CapaId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
@@ -91,7 +122,7 @@ namespace SimpleCapaApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,UserId,Status,CreationDate,DueDate")] Task task)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,UserId,CapaId,Status,Step,CreationDate,DueDate")] Task task)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +130,7 @@ namespace SimpleCapaApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CapaId = new SelectList(db.Capas, "Id", "Name", task.CapaId);
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }

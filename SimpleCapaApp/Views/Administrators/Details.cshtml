@@ -8,40 +8,41 @@
 
 <div>
     <h4>Administrator</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <table>
+        <tr>
+            <td>
+               First Name
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.FirstName)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <td>
+                Last Name
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.LastName)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <td>
+                Email
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
 
-    </dl>
+        </tr>
+    </table>
 </div>
 
 <p>
     @Html.ActionLink("Create New User", "Create", "Users", new { id = Model.Id}, null)
 </p>
 
-@Html.Action("MyUsers", "Administrators", new { id = Model.Id})
+@Html.Action("MyUsers", "Administrators", new { id = Model.Id })
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

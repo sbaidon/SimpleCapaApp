@@ -10,115 +10,113 @@ using SimpleCapaApp.Models;
 
 namespace SimpleCapaApp.Controllers
 {
-    public class AdministratorsController : Controller
+    public class CapasController : Controller
     {
         private CapaContext db = new CapaContext();
 
-        // GET: Administrators
-        
+        // GET: Capas
         public ActionResult Index()
         {
-
-            return View(db.Administrators.ToList());
+            var capas = db.Capas.Include(c => c.MasterUser);
+            return View(capas.ToList());
         }
 
-        public ActionResult MyUsers(int id)
-        {
-            return View(db.Users.Where(u => u.AdministratorId == id).ToList());
-        }
-
-
-        // GET: Administrators/Details/5
+     
+        // GET: Capas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrators.Find(id);
-            if (administrator == null)
+            Capa capa = db.Capas.Find(id);
+            if (capa == null)
             {
                 return HttpNotFound();
             }
-            return View(administrator);
+            return View(capa);
         }
 
-        // GET: Administrators/Create
+        // GET: Capas/Create
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: Administrators/Create
+        // POST: Capas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,UserId,CreationDate,DueDate")] Capa capa)
         {
             if (ModelState.IsValid)
             {
-                db.Administrators.Add(administrator);
+                db.Capas.Add(capa);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(administrator);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", capa.UserId);
+            return View(capa);
         }
 
-        // GET: Administrators/Edit/5
+        // GET: Capas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrators.Find(id);
-            if (administrator == null)
+            Capa capa = db.Capas.Find(id);
+            if (capa == null)
             {
                 return HttpNotFound();
             }
-            return View(administrator);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", capa.UserId);
+            return View(capa);
         }
 
-        // POST: Administrators/Edit/5
+        // POST: Capas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email")] Administrator administrator)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,UserId,CreationDate,DueDate")] Capa capa)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(administrator).State = EntityState.Modified;
+                db.Entry(capa).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(administrator);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", capa.UserId);
+            return View(capa);
         }
 
-        // GET: Administrators/Delete/5
+        // GET: Capas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrators.Find(id);
-            if (administrator == null)
+            Capa capa = db.Capas.Find(id);
+            if (capa == null)
             {
                 return HttpNotFound();
             }
-            return View(administrator);
+            return View(capa);
         }
 
-        // POST: Administrators/Delete/5
+        // POST: Capas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Administrator administrator = db.Administrators.Find(id);
-            db.Administrators.Remove(administrator);
+            Capa capa = db.Capas.Find(id);
+            db.Capas.Remove(capa);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model SimpleCapaApp.Models.Task
+﻿@model SimpleCapaApp.Models.Capa
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Task</h4>
+    <h4>Capa</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Capa.Name)
+            Master User
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Capa.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
+            @Html.DisplayFor(model => model.MasterUser.FirstName)
         </dd>
 
         <dt>
@@ -40,22 +32,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Step)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Step)
         </dd>
 
         <dt>
@@ -76,6 +52,36 @@
 
     </dl>
 </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Planning Tasks</h2>
+            @Html.Action("PlanTasks" , "Tasks" , new { id = Model.Id})
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Prevention Tasks</h2>
+        @Html.Action("PreventTasks", "Tasks", new { id = Model.Id })
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Checking Tasks</h2>
+        @Html.Action("CheckTasks", "Tasks", new { id = Model.Id })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Correction Tasks</h2>
+        @Html.Action("CorrectTasks", "Tasks", new { id = Model.Id })
+    </div>
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

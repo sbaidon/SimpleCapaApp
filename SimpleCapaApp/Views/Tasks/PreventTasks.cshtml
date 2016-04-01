@@ -3,13 +3,7 @@
 <table class="table">
     <tr>
         <th>
-            Capa
-        </th>
-        <th>
-            Step
-        </th>
-        <th>
-            Appointed to
+            Appointed To
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -20,22 +14,19 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+
         <th>
-            Creation Date
+            @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
-            Due Date
+            @Html.DisplayNameFor(model => model.DueDate)
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Capa.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Step)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.User.FirstName)
         </td>
@@ -54,7 +45,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.DueDate)
         </td>
-
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
     </tr>
 }
 

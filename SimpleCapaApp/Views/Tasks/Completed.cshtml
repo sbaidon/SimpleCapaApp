@@ -1,9 +1,15 @@
 ﻿@model IEnumerable<SimpleCapaApp.Models.Task>
 
-<table class="dl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="table">
     <tr>
-        <th class="mdl-data-table__cell--non-numeric">
-            Appointed To
+        <th>
+            Capa
+        </th>
+        <th>
+            Step
+        </th>
+        <th>
+            Appointed to
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -15,38 +21,44 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            Creation Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DueDate)
+            Due Date
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="mdl-data-table__cell--non-numeric">
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td class="mdl-data-table__cell--non-numeric" >
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td class="mdl-data-table__cell--non-numeric">
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td  class="mdl-data-table__cell--non-numeric" >
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td class="mdl-data-table__cell--non-numeric">
-            @Html.DisplayFor(modelItem => item.DueDate)
-        </td>
-        <td class="mdl-data-table__cell--non-numeric">
-            @Html.ActionLink("Mark as complete", "Delete", "Tasks" , new { id=item.Id }, null)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capa.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Step)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.ActionLink("Mark as complete", "Delete", "Tasks", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
 
 </table>
